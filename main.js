@@ -1,24 +1,30 @@
 //api https://63372212132b46ee0bddc50f.mockapi.io/product
 
 const createCardFromProduct = (product) => {
-	return `<div class='card'>
-      <h3>${product.name}</h3>
-      <img src='${product.img}' />
-      <p>${product.price}</p>
-   </div>`;
+  return `<div class="card text-bg-dark mb-3" style="width: 18rem;">
+	
+	<a href="#" class="card-img-top "><img src="${product.img}" class="card-img-top" alt="productimg"></a>
+	<div class="card-body">
+	  <a href="#" class="card-title">
+	  <h5 class="card-title mb-2">${product.name}</h5></a>
+	  <h5 class="card-title mb-3">${product.price}$</h5>
+	  <a href="#" class="btn btn-primary">Add to cart</a>
+	  <a href="#" class="btn btn-primary ms-4 ">See details</a>
+	</div>
+  </div>`;
 }; // create cards
 
 const getProductsOnIndexPage = () => {
-	fetch('https://63372212132b46ee0bddc50f.mockapi.io/product')
-		.then((result) => result.json())
-		.then((products) => {
-			const productCards = products.map((product) =>
-				createCardFromProduct(product)
-			);
-			const innerHTMLProducts = productCards.join('');
-			document.querySelector('.products-container').innerHTML =
-				innerHTMLProducts;
-		});
+  fetch("https://63372212132b46ee0bddc50f.mockapi.io/product")
+    .then((result) => result.json())
+    .then((products) => {
+      const productCards = products.map((product) =>
+        createCardFromProduct(product)
+      );
+      const innerHTMLProducts = productCards.join("");
+      document.querySelector(".products-container").innerHTML =
+        innerHTMLProducts;
+    });
 };
 
-window.addEventListener('DOMContentLoaded', getProductsOnIndexPage);
+window.addEventListener("DOMContentLoaded", getProductsOnIndexPage);
