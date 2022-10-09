@@ -1,18 +1,20 @@
 //api https://63372212132b46ee0bddc50f.mockapi.io/product
 
 const createCardFromProduct = (product) => {
-  return `<div class="card text-bg-dark mb-3" style="width: 18rem;">
+  return `<div class="card text-bg-dark mb-3 mt-3  product-card" style="width: 18rem;">
 	
 	<a href="#" class="card-img-top "><img src="${product.img}" class="card-img-top" alt="productimg"></a>
 	<div class="card-body">
 	  <a href="#" class="card-title">
 	  <h5 class="card-title mb-2">${product.name}</h5></a>
 	  <h5 class="card-title mb-3">${product.price}$</h5>
-	  <a href="#" class="btn btn-primary">Add to cart</a>
-	  <a href="#" class="btn btn-primary ms-4 ">See details</a>
+	  <a href="#" class="btn btn-primary btn-card">Add to cart</a>
+	  
 	</div>
   </div>`;
 }; // create cards
+
+// <a href="#" class="btn btn-primary ms-4 btn-card">See details</a> see details btn
 
 const getProductsOnIndexPage = () => {
   fetch("https://63372212132b46ee0bddc50f.mockapi.io/product")
