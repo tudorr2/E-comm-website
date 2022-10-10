@@ -6,9 +6,9 @@ const createCardFromProduct = (product) => {
 	<a href="#" class="card-img-top "><img src="${product.img}" class="card-img-top" alt="productimg"></a>
 	<div class="card-body">
 	  <a href="#" class="card-title">
-	  <h5 class="card-title mb-2">${product.name}</h5></a>
+	  <h5 class="card-title mb-2 text-light">${product.name}</h5></a>
 	  <h5 class="card-title mb-3">${product.price}$</h5>
-	  <a href="#" class="btn btn-primary btn-card">Add to cart</a>
+	  <a href="#" class="btn btn-light btn-card">Add to cart</a>
 	  
 	</div>
   </div>`;
