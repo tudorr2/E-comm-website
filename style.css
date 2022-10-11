@@ -15,6 +15,7 @@ html {
   margin: auto;
   align-items: center;
   justify-content: center;
+  
 }
 
 .product-card {
@@ -22,3 +23,7 @@ html {
   margin: 10px;
 }
 
+footer{
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
