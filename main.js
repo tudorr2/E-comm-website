@@ -30,3 +30,4 @@ const getProductsOnIndexPage = () => {
 };
 
 window.addEventListener("DOMContentLoaded", getProductsOnIndexPage);
+

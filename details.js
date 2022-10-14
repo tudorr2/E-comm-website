@@ -22,7 +22,7 @@ const showProductDetails = async () => {
 			<h5 class="card-title text-warning mb-3">${productInfo.name}</h5>
 			<p class="card-text">${productInfo.descr}.</p>
 			<h5 class="card-title text-warning mt-4">${productInfo.price}$</h5>
-			<button type="button" class="btn btn-outline-warning mt-2">Add to cart</button>
+			<button type="button" class="btn btn-outline-warning mt-2 add-to-cart">Add to cart</button>
 
 			
 		  </div>
@@ -36,3 +36,4 @@ const showProductDetails = async () => {
 };
 
 window.addEventListener('DOMContentLoaded', showProductDetails);
+
