@@ -6,24 +6,15 @@ const loadProducts = () => {
 	const products = [];
 
 	const createCardFromProduct = (product) => {
-		return `<table class="table table-hover table-dark">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Product</th>
-            <th scope="col">Name</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">${product.id}</th>
-            <td>Mark</td>
-            
-          </tr>
-        
-        </tbody>
-      </table>`;
+		return `<tr>
+        <th scope="row">${product.id}</th>
+        <td><img src="${product.img}" class = "cart-img"></td>
+        <td>${product.name}</td>
+        <td>${product.price}</td>
+        <td><button class = "btn btn-outline-warning"><i class="fa-solid fa-trash"></i></button></td>
+
+      </tr>
+  `;
 	};
 
 	productIds.forEach(async (productId) => {
@@ -34,7 +25,7 @@ const loadProducts = () => {
 		const product = await result.json();
 		const innerHTMLProduct = createCardFromProduct(product);
 
-		document.querySelector('.products-container').innerHTML += innerHTMLProduct;
+		document.querySelector('.tbody').innerHTML += innerHTMLProduct;
 	});
 };
 
