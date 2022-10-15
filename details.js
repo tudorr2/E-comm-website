@@ -22,14 +22,14 @@ const showProductDetails = async () => {
 			<h5 class="card-title text-warning mb-3">${productInfo.name}</h5>
 			<p class="card-text">${productInfo.descr}.</p>
 			<h5 class="card-title text-warning mt-4">${productInfo.price}$</h5>
-			<button type="button" class="btn btn-outline-warning mt-2 add-to-cart">Add to cart</button>
+			<button id=${productInfo.id} class="btn btn-outline-warning mt-2 add-to-cart">Add to cart</button>
 
 			
 		  </div>
 		</div>
 	  </div>
 	</div>
-      </div>
+ </div>
    `;
 
 	document.querySelector('.product-details').innerHTML = productCardDetails;
@@ -37,3 +37,21 @@ const showProductDetails = async () => {
 
 window.addEventListener('DOMContentLoaded', showProductDetails);
 
+const addProductToCart = async (id) => {
+	let products = JSON.parse(localStorage.getItem('products'));
+	if (products == null) products = [];
+	products.push(id);
+
+	localStorage.setItem('products', JSON.stringify(products));
+};
+
+const handleActions = (event) => {
+	if (event.target.classList.contains('add-to-cart')) {
+		const productId = event.target.id;
+		addProductToCart(productId);
+	}
+};
+
+document
+	.querySelector('.product-details')
+	.addEventListener('click', handleActions);
