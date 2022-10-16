@@ -23,7 +23,6 @@ const showProductDetails = async () => {
 			<p class="card-text">${productInfo.descr}.</p>
 			<h5 class="card-title text-warning mt-4">${productInfo.price}$</h5>
 			<button id=${productInfo.id} class="btn btn-outline-warning mt-2 add-to-cart">Add to cart</button>
-
 			
 		  </div>
 		</div>
