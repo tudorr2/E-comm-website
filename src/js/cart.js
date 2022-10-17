@@ -9,7 +9,7 @@ const loadProducts = () => {
   
     const createCardFromProduct = (product) => {
         return `<tr>
-        <th scope="row"><input type = "number" class = "input-group-sm quantity"></th>
+        <th scope="row"><input type = "number" class = "input-group-sm quantity quantity-product"></th>
           <td><img src="${product.img}" class = "cart-img"></td>
           <td>${product.name}</td>
           <td>${product.price} $</td>
