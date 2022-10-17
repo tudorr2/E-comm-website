@@ -44,8 +44,8 @@ window.addEventListener('DOMContentLoaded', populateProductsTable);
 const addProduct = async () => {
 	const product = {
 		name: nameInputElement.value,
-		image: imageInputElement.value,
-		description: descriptionInputElement.value,
+		img: imageInputElement.value,
+		descr: descriptionInputElement.value,
 		price: priceInputElement.value,
 	};
 
