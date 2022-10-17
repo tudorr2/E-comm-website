@@ -1,25 +1,22 @@
-import {
-	postNewProduct,
-	getAllProducts,
-	deleteProductById,
-} from './helper.js';
-import { showConfirmationMessage } from './helper.js';
+import { postNewProduct, getAllProducts, deleteProductById } from "./helper.js";
+import { showConfirmationMessage } from "./helper.js";
 
-const imageInputElement = document.querySelector('.add-product-form #image');
-const nameInputElement = document.querySelector('.add-product-form #name');
+const imageInputElement = document.querySelector(".add-product-form #image");
+const nameInputElement = document.querySelector(".add-product-form #name");
 const descriptionInputElement = document.querySelector(
-	'.add-product-form #description'
-);
-const priceInputElement = document.querySelector('.add-product-form #price');
+".add-product-form #description");
+const quantityInputElement = document.querySelector(".add-product-form #quantity")
+const priceInputElement = document.querySelector(".add-product-form #price");
+const categoryInputElement = document.querySelector(".add-product-form #category");
 
 const populateProductsTable = async () => {
-	const products = await getAllProducts();
-	console.log(products);
+  const products = await getAllProducts();
+  console.log(products);
 
-	const tableContent = products
-		.map(
-			(product, index) =>
-				`<tr>
+  const tableContent = products
+    .map(
+      (product, index) =>
+        `<tr>
 			<th scope="row">${index + 1}</th>
 			<td><img src="${product.img}" width="50" height="50"></td>
 			<td>${product.name}</td>
@@ -33,47 +30,48 @@ const populateProductsTable = async () => {
 				</button>
 			</td>
 		</tr>`
-		)
-		.join('');
+    )
+    .join("");
 
-	document.getElementById('products-table-body').innerHTML = tableContent;
+  document.getElementById("products-table-body").innerHTML = tableContent;
 };
 
-window.addEventListener('DOMContentLoaded', populateProductsTable);
+window.addEventListener("DOMContentLoaded", populateProductsTable);
 
 const addProduct = async () => {
-	const product = {
-		name: nameInputElement.value,
-		img: imageInputElement.value,
-		descr: descriptionInputElement.value,
-		price: priceInputElement.value,
-	};
+  const product = {
+    name: nameInputElement.value,
+    img: imageInputElement.value,
+    descr: descriptionInputElement.value,
+    price: priceInputElement.value,
+    quantity : quantityInputElement.value,
+    category : categoryInputElement.value,
+  };
 
-	const response = await postNewProduct(product);
-	showConfirmationMessage(
-		'add-product-message',
-		response,
-		'Produsul a fost adaugat cu succes!'
-	);
+  const response = await postNewProduct(product);
+  showConfirmationMessage(
+    "add-product-message",
+    response,
+    "Produsul a fost adaugat cu succes!"
+  );
 };
 
-document.getElementById('add-product').addEventListener('click', addProduct);
+document.getElementById("add-product").addEventListener("click", addProduct);
 
-document.getElementById('add-new-product').addEventListener('click', () => {
-	console.log('test');
-	document.querySelector('.add-product-container').classList.toggle('hidden');
+document.getElementById("add-new-product").addEventListener("click", () => {
+  document.querySelector(".add-product-container").classList.toggle("hidden");
 });
 
 const handleProducts = async (event) => {
-	if (event.target.classList.contains('fa-trash-can')) {
-		const productId = event.target.parentNode.id;
-		const response = await deleteProductById(productId);
-		if (response.ok) {
-			await populateProductsTable();
-		}
-	}
+  if (event.target.classList.contains("fa-trash-can")) {
+    const productId = event.target.parentNode.id;
+    const response = await deleteProductById(productId);
+    if (response.ok) {
+      await populateProductsTable();
+    }
+  }
 };
 
 document
-	.getElementById('products-list')
-	.addEventListener('click', handleProducts);
+  .getElementById("products-list")
+  .addEventListener("click", handleProducts);
