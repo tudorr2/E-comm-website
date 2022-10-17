@@ -42,3 +42,55 @@ footer{
 width: 40px;
 
 }
+
+.add-product-container {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	margin-top: 40px;
+	border: 2px solid lightblue;
+	border-radius: 5px;
+	padding: 20px;
+}
+
+.admin-container .header,
+.admin-container .add-product-header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.add-product-form {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.add-product-form .item {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.add-product-form .item .label-item {
+	flex: 1;
+}
+
+.add-product-form .item .input-item {
+	flex: 2;
+}
+
+.add-product-form .item .input-item input {
+	width: 100%;
+}
+
+.hidden {
+	display: none;
+}
+
+.error {
+	background-color: red;
+}
+
+.success {
+	background-color: green;
+}
