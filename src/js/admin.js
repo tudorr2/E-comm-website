@@ -4,10 +4,15 @@ import { showConfirmationMessage } from "./helper.js";
 const imageInputElement = document.querySelector(".add-product-form #image");
 const nameInputElement = document.querySelector(".add-product-form #name");
 const descriptionInputElement = document.querySelector(
-".add-product-form #description");
-const quantityInputElement = document.querySelector(".add-product-form #quantity")
+  ".add-product-form #description"
+);
+const quantityInputElement = document.querySelector(
+  ".add-product-form #quantity"
+);
 const priceInputElement = document.querySelector(".add-product-form #price");
-const categoryInputElement = document.querySelector(".add-product-form #category");
+const categoryInputElement = document.querySelector(
+  ".add-product-form #category"
+);
 
 const populateProductsTable = async () => {
   const products = await getAllProducts();
@@ -44,8 +49,8 @@ const addProduct = async () => {
     img: imageInputElement.value,
     descr: descriptionInputElement.value,
     price: priceInputElement.value,
-    quantity : quantityInputElement.value,
-    category : categoryInputElement.value,
+    quantity: quantityInputElement.value,
+    category: categoryInputElement.value,
   };
 
   const response = await postNewProduct(product);
@@ -59,6 +64,9 @@ const addProduct = async () => {
 document.getElementById("add-product").addEventListener("click", addProduct);
 
 document.getElementById("add-new-product").addEventListener("click", () => {
+  document.querySelector(".add-product-container").classList.toggle("hidden");
+});
+document.querySelector(".cancel-btn").addEventListener("click", () => {
   document.querySelector(".add-product-container").classList.toggle("hidden");
 });
 
