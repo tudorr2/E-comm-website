@@ -12,10 +12,11 @@ fetch("https://63372212132b46ee0bddc50f.mockapi.io/product")
 let products = JSON.parse(localStorage.getItem("products"));
 let cart = JSON.parse(localStorage.getItem("cart"));
 
-function removeItemFromCart(productId) {
+ function removeItemFromCart(productId) {
   let temp = cart.filter((item) => item.id != productId);
   localStorage.setItem("cart", JSON.stringify(temp));
-}
+  document.querySelector(".tbody").innerHTML = "";
+};
 // removeItemFromCart(2);
 
 function updateQuantity(productId, quantity) {
@@ -26,6 +27,7 @@ function updateQuantity(productId, quantity) {
   }
   localStorage.setItem("cart", JSON.stringify(cart));
 }
+
 
 function getTotal() {
   let temp = cart.map(function (item) {
@@ -43,7 +45,7 @@ getTotal();
 
 //make rows
 
-const loadProducts = () => {
+const loadCart = () => {
   let cart = JSON.parse(localStorage.getItem("cart"));
 
   const createCardFromProduct = (product) => {
@@ -52,7 +54,7 @@ const loadProducts = () => {
     <td><img src="${product.img}" class = "cart-img"></td>
     <td>${product.name}</td>
     <td>${product.price} $</td>
-    <td><button class = "btn btn-outline-warning delete-product"><i class="fa-solid fa-trash"></i></button></td>
+    <td><button onclick="removeItemFromCart(${product.id})" class = "btn btn-outline-warning delete-product"><i class="fa-solid fa-trash"></i></button></td>
     </tr>
     `;
   };
@@ -71,4 +73,4 @@ const loadProducts = () => {
   });
 };
 
-window.addEventListener("DOMContentLoaded", loadProducts);
+window.addEventListener("DOMContentLoaded", loadCart);
