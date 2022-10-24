@@ -4,7 +4,6 @@ const showProductDetails = async () => {
   const searchParams = new URLSearchParams(searchParamString);
 
   const productId = searchParams.get("product_id");
-  
 
   const productURL = `https://63372212132b46ee0bddc50f.mockapi.io/product/${productId}`;
   const result = await fetch(productURL);
@@ -49,6 +48,8 @@ fetch("https://63372212132b46ee0bddc50f.mockapi.io/product")
 let products = JSON.parse(localStorage.getItem("products"));
 let cart = JSON.parse(localStorage.getItem("cart"));
 
+
+
 function addItemToCart(productId) {
   let product = products.find(function (product) {
     return product.id == productId;
@@ -76,3 +77,4 @@ const handleActions = (event) => {
 document
   .querySelector(".product-details")
   .addEventListener("click", handleActions);
+
