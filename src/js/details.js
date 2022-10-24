@@ -1,16 +1,16 @@
 const showProductDetails = async () => {
-	const searchParamString = window.location.search;
+  const searchParamString = window.location.search;
 
-	const searchParams = new URLSearchParams(searchParamString);
+  const searchParams = new URLSearchParams(searchParamString);
 
-	const productId = searchParams.get('product_id');
+  const productId = searchParams.get("product_id");
+  
 
-	
-	const productURL = `https://63372212132b46ee0bddc50f.mockapi.io/product/${productId}`;
-	const result = await fetch(productURL);
-	const productInfo = await result.json();
+  const productURL = `https://63372212132b46ee0bddc50f.mockapi.io/product/${productId}`;
+  const result = await fetch(productURL);
+  const productInfo = await result.json();
 
-	const productCardDetails = `
+  const productCardDetails = `
       <div>
 	  <div class="card mb-3 mt-4 text-bg-dark product-det" >
 	  <div class="row g-0">
@@ -31,26 +31,48 @@ const showProductDetails = async () => {
  </div>
    `;
 
-	document.querySelector('.product-details').innerHTML = productCardDetails;
+  document.querySelector(".product-details").innerHTML = productCardDetails;
 };
 
-window.addEventListener('DOMContentLoaded', showProductDetails);
+window.addEventListener("DOMContentLoaded", showProductDetails);
+fetch("https://63372212132b46ee0bddc50f.mockapi.io/product")
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    localStorage.setItem("products", JSON.stringify(data));
+    if (!localStorage.getItem("cart")) {
+      localStorage.setItem("cart", "[]");
+    }
+  });
 
-const addProductToCart = async (id) => {
-	let products = JSON.parse(localStorage.getItem('products'));
-	if (products == null) products = [];
-	products.push(id);
+let products = JSON.parse(localStorage.getItem("products"));
+let cart = JSON.parse(localStorage.getItem("cart"));
 
-	localStorage.setItem('products', JSON.stringify(products));
-};
+function addItemToCart(productId) {
+  let product = products.find(function (product) {
+    return product.id == productId;
+  });
+
+  if (cart.length == 0) {
+    cart.push(product);
+  } else {
+    let res = cart.find((element) => element.id == productId);
+    if (res === undefined) {
+      cart.push(product);
+    }
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
 
 const handleActions = (event) => {
-	if (event.target.classList.contains('add-to-cart')) {
-		const productId = event.target.id;
-		addProductToCart(productId);
-	}
+  if (event.target.classList.contains("add-to-cart")) {
+    const productId = event.target.id;
+    addItemToCart(productId);
+  }
 };
 
 document
-	.querySelector('.product-details')
-	.addEventListener('click', handleActions);
+  .querySelector(".product-details")
+  .addEventListener("click", handleActions);
