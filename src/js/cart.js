@@ -12,21 +12,22 @@ fetch("https://63372212132b46ee0bddc50f.mockapi.io/product")
 let products = JSON.parse(localStorage.getItem("products"));
 let cart = JSON.parse(localStorage.getItem("cart"));
 
- function removeItemFromCart(productId) {
+function removeItemFromCart(productId) {
   let temp = cart.filter((item) => item.id != productId);
   localStorage.setItem("cart", JSON.stringify(temp));
-  document.querySelector(".tbody").innerHTML = "";
-};
+  document.querySelector(".tbody").innerText = "";
+  window.location.reload();
+}
 // removeItemFromCart(2);
-
-function updateQuantity(productId, quantity) {
+function updateQuantity(productId, quantityProd) {
   for (let product of cart) {
     if (product.id == productId) {
-      product.quantity = quantity;
+      product.quantity = quantityProd;
     }
   }
   localStorage.setItem("cart", JSON.stringify(cart));
 }
+
 
 
 function getTotal() {
@@ -50,27 +51,34 @@ const loadCart = () => {
 
   const createCardFromProduct = (product) => {
     return `<tr>
-    <th scope="row">${product.id}</th>
+    <th scope="row">${index}</th>
     <td><img src="${product.img}" class = "cart-img"></td>
     <td>${product.name}</td>
+    <td><input type="text" name="" id="quantity-product"></td>
     <td>${product.price} $</td>
     <td><button onclick="removeItemFromCart(${product.id})" class = "btn btn-outline-warning delete-product"><i class="fa-solid fa-trash"></i></button></td>
     </tr>
     `;
+    const quantityProd = document.querySelector("#quantity-product").value;
+    
   };
-
+  
   const createRowFromProduct = cart.map(createCardFromProduct);
-
+  var index = 1;
+  
   cart.forEach(async (productId) => {
     const result = await fetch(
       `https://63372212132b46ee0bddc50f.mockapi.io/product/${productId.id}`
     );
-
     const product = await result.json();
     const innerHTMLProduct = createCardFromProduct(product);
-
+    index++;
     document.querySelector(".tbody").innerHTML += innerHTMLProduct;
   });
 };
 
 window.addEventListener("DOMContentLoaded", loadCart);
+
+document.querySelector(".buy-btn").addEventListener("click", () => {
+  alert("This is just a personal project👽");
+});
