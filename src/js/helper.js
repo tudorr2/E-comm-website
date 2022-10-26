@@ -47,10 +47,6 @@ export const postNewProduct = async (product) => {
   return response;
 };
 
-
-
-
-
 export const deleteProductById = async (id) => {
   const response = await fetch(PRODUCTS_URL + id, {
     method: "DELETE",
@@ -58,3 +54,15 @@ export const deleteProductById = async (id) => {
 
   return response;
 };
+
+
+export const putNewProduct = async (product) => {
+	const response = await fetch (PRODUCTS_URL , {
+		method : "PUT",
+		headers:{
+			"Content-Type" : "aplication/json",
+		},
+		body : JSON.stringify(product),
+	});
+	return response;
+}

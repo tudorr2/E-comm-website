@@ -1,4 +1,9 @@
-import { postNewProduct, getAllProducts, deleteProductById } from "./helper.js";
+import {
+  postNewProduct,
+  getAllProducts,
+  deleteProductById,
+  putNewProduct,
+} from "./helper.js";
 import { showConfirmationMessage } from "./helper.js";
 
 const imageInputElement = document.querySelector(".add-product-form #image");
