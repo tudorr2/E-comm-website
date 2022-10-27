@@ -1,9 +1,4 @@
-import {
-  postNewProduct,
-  getAllProducts,
-  deleteProductById,
-  putNewProduct,
-} from "./helper.js";
+import { postNewProduct, getAllProducts, deleteProductById } from "./helper.js";
 import { showConfirmationMessage } from "./helper.js";
 
 const imageInputElement = document.querySelector(".add-product-form #image");
@@ -26,16 +21,18 @@ const populateProductsTable = async () => {
   const tableContent = products
     .map(
       (product, index) =>
-        `<tr>
+        `<tr >
 			<th scope="row">${index + 1}</th>
 			<td><img src="${product.img}" width="50" height="50"></td>
 			<td>${product.name}</td>
 			<td>${product.price}</td>
-			<td>
+			<td data-id=${product.id}>
 				<button id="${product.id}" class="btn btn-danger">
 					<i class="fa-regular fa-trash-can"></i>
 				</button>
-				<button class="btn btn-warning">
+        </td>
+        <td data-id=${product.id}>
+				<button  class="btn btn-warning btn-edit" id="macarena ${product.id}">
 					<i class="fa-solid fa-pencil"></i>
 				</button>
 			</td>
@@ -71,8 +68,23 @@ document.getElementById("add-product").addEventListener("click", addProduct);
 document.getElementById("add-new-product").addEventListener("click", () => {
   document.querySelector(".add-product-container").classList.toggle("hidden");
 });
+
 document.querySelector(".cancel-btn").addEventListener("click", () => {
   document.querySelector(".add-product-container").classList.toggle("hidden");
+});
+
+const productList = document.querySelector("#products-list");
+
+productList.addEventListener("click", (e) => {
+  e.preventDefault();
+  let editButtonIsPressed = e.target.id == "macarena";
+  console.log(e.target.parentElement.dataset.id);
+  let id = e.target.parentElement.dataset.id;
+  console.log(id);
+
+  if (editButtonIsPressed) {
+    console.log("edittt");
+  } else console.log(".i.");
 });
 
 const handleProducts = async (event) => {

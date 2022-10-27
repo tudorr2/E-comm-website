@@ -56,13 +56,13 @@ export const deleteProductById = async (id) => {
 };
 
 
-export const putNewProduct = async (product) => {
-	const response = await fetch (PRODUCTS_URL , {
-		method : "PUT",
-		headers:{
-			"Content-Type" : "aplication/json",
-		},
-		body : JSON.stringify(product),
-	});
-	return response;
-}
+// export const putNewProduct = async (product) => {
+// 	const response = await fetch (PRODUCTS_URL , {
+// 		method : "PUT",
+// 		headers:{
+// 			"Content-Type" : "aplication/json",
+// 		},
+// 		body : JSON.stringify(product),
+// 	});
+// 	return response;
+// }
