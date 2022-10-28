@@ -84,7 +84,7 @@ productList.addEventListener("click", (e) => {
 
   if (editButtonIsPressed) {
     console.log("edittt");
-  } else console.log(".i.");
+  } else console.log("nu merge");
 });
 
 const handleProducts = async (event) => {
