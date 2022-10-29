@@ -1,23 +1,21 @@
+// export const showConfirmationMessage = (className, response, message) => {
+//   const messageContainer = document.querySelector("." + className);
+//   messageContainer.classList.remove("success");
+//   messageContainer.classList.remove("error");
+//   messageContainer.classList.remove("hidden");
 
+//   if (!response.ok) {
+//     messageContainer.innerHTML = "Something went wrong!";
+//     messageContainer.classList.add("error");
+//   } else {
+//     messageContainer.innerHTML = message;
+//     messageContainer.classList.add("success");
+//   }
 
-export const showConfirmationMessage = (className, response, message) => {
-  const messageContainer = document.querySelector("." + className);
-  messageContainer.classList.remove("success");
-  messageContainer.classList.remove("error");
-  messageContainer.classList.remove("hidden");
-
-  if (!response.ok) {
-    messageContainer.innerHTML = "Something went wrong!";
-    messageContainer.classList.add("error");
-  } else {
-    messageContainer.innerHTML = message;
-    messageContainer.classList.add("success");
-  }
-
-  setTimeout(() => {
-    messageContainer.classList.add("hidden");
-  }, 3000);
-};
+//   setTimeout(() => {
+//     messageContainer.classList.add("hidden");
+//   }, 3000);
+// };
 
 const PRODUCTS_URL = "https://63372212132b46ee0bddc50f.mockapi.io/product/";
 
@@ -55,14 +53,13 @@ export const deleteProductById = async (id) => {
   return response;
 };
 
-
-// export const putNewProduct = async (product) => {
-// 	const response = await fetch (PRODUCTS_URL , {
-// 		method : "PUT",
-// 		headers:{
-// 			"Content-Type" : "aplication/json",
-// 		},
-// 		body : JSON.stringify(product),
-// 	});
-// 	return response;
-// }
+export const putNewProduct = async (id) => {
+  const response = await fetch(PRODUCTS_URL + id, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "aplication/json",
+    },
+    body: JSON.stringify(product),
+  });
+  return response;
+};

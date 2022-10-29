@@ -1,5 +1,5 @@
-import { postNewProduct, getAllProducts, deleteProductById } from "./helper.js";
-import { showConfirmationMessage } from "./helper.js";
+import { postNewProduct, getAllProducts, deleteProductById , putNewProduct} from "./helper.js";
+// import { showConfirmationMessage } from "./helper.js";
 
 const imageInputElement = document.querySelector(".add-product-form #image");
 const nameInputElement = document.querySelector(".add-product-form #name");
@@ -23,7 +23,7 @@ const populateProductsTable = async () => {
       (product, index) =>
         `<tr >
 			<th scope="row">${index + 1}</th>
-			<td><img src="${product.img}" width="50" height="50"></td>
+			<td><img src="${product.img}" class="img-table" width="50" height="50"></td>
 			<td>${product.name}</td>
 			<td>${product.price}</td>
 			<td data-id=${product.id}>
@@ -32,18 +32,21 @@ const populateProductsTable = async () => {
 				</button>
         </td>
         <td data-id=${product.id}>
-				<button  class="btn btn-warning btn-edit" id="macarena ${product.id}">
+				<button  class="btn btn-warning btn-edit" id=" ${product.id}">
 					<i class="fa-solid fa-pencil"></i>
 				</button>
 			</td>
 		</tr>`
     )
     .join("");
-
+      
   document.getElementById("products-table-body").innerHTML = tableContent;
 };
-
 window.addEventListener("DOMContentLoaded", populateProductsTable);
+// document.querySelector("#products-list");
+// document.querySelector("#macarena").addEventListener("click", () => {
+//   alert("fff");
+// });
 
 const addProduct = async () => {
   const product = {
@@ -65,34 +68,46 @@ const addProduct = async () => {
 
 document.getElementById("add-product").addEventListener("click", addProduct);
 
-document.getElementById("add-new-product").addEventListener("click", () => {
-  document.querySelector(".add-product-container").classList.toggle("hidden");
-});
+// document.getElementById("add-new-product").addEventListener("click", () => {
+//   document.querySelector(".add-product-container").classList.toggle("hidden");
+// });
 
-document.querySelector(".cancel-btn").addEventListener("click", () => {
-  document.querySelector(".add-product-container").classList.toggle("hidden");
-});
+// document.querySelector(".cancel-btn").addEventListener("click", () => {
+//   document.querySelector(".add-product-container").classList.toggle("hidden");
+// });
 
-const productList = document.querySelector("#products-list");
 
-productList.addEventListener("click", (e) => {
-  e.preventDefault();
-  let editButtonIsPressed = e.target.id == "macarena";
-  console.log(e.target.parentElement.dataset.id);
-  let id = e.target.parentElement.dataset.id;
-  console.log(id);
+// productList.addEventListener("click", (e) => {
+//   e.preventDefault();
+//   let editButtonIsPressed = e.target.id == "macarena";
+//   console.log(e.target.parentElement.dataset.id);
+//   let id = e.target.parentElement.dataset.id;
+//   console.log(id);
 
-  if (editButtonIsPressed) {
-    console.log("edittt");
-  } else console.log("nu merge");
-});
+//   if (editButtonIsPressed) {
+//     console.log("edittt");
+//   } else console.log("nu merge");
+// });
 
 const handleProducts = async (event) => {
   if (event.target.classList.contains("fa-trash-can")) {
     const productId = event.target.parentNode.id;
+    console.log(productId);
     const response = await deleteProductById(productId);
     if (response.ok) {
       await populateProductsTable();
+    }
+   
+  }
+  if(event.target.classList.contains("fa-pencil")){
+    const productId = event.target.parentNode.id;
+    const response2 = await putNewProduct(productId);
+    console.log(productId);
+    let imageValue = document.querySelector(".img-table").textContent;
+    console.log(imageValue);
+    
+    
+    if(response2.ok){
     }
   }
 };
