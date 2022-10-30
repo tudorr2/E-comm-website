@@ -104,6 +104,7 @@ const handleProducts = async (event) => {
     const response2 = await putNewProduct(productId);
     console.log(productId);
     let imageValue = document.querySelector(".img-table").textContent;
+    
     console.log(imageValue);
     
     
