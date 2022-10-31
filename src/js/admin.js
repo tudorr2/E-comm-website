@@ -53,7 +53,7 @@ const populateProductsTable = async () => {
   document.getElementById("products-table-body").innerHTML = tableContent;
 };
 window.addEventListener("DOMContentLoaded", populateProductsTable);
-
+// add new product
 const addProduct = async () => {
   const product = {
     name: nameInputElement.value,
@@ -95,7 +95,7 @@ const handleProducts = async (event) => {
   //put product
   if (event.target.classList.contains("fa-pencil")) {
     const productId = event.target.parentNode.id;
-    
+
     let imageInputElement = document.querySelector(".add-product-form #image");
     let nameInputElement = document.querySelector(".add-product-form #name");
     let descriptionInputElement = document.querySelector(
@@ -124,9 +124,28 @@ const handleProducts = async (event) => {
     descriptionInputElement.value = descrValue;
     console.log(imageValue);
     console.log(productId);
-    // const response2 = await putNewProduct(productId);
-    // if(response2.ok){
-    // }
+    const response2 = await putNewProduct(productId);
+    if(response2.ok){
+      const putProduct = async () => {
+        const product = {
+          name: nameInputElement.value,
+          img: imageInputElement.value,
+          descr: descriptionInputElement.value,
+          price: priceInputElement.value,
+          quantity: quantityInputElement.value,
+          category: categoryInputElement.value,
+        };
+      
+        const response = await putNewProduct(productId);
+        showConfirmationMessage(
+          "add-product-message",
+          response,
+          "Product was updated with succes!"
+        );
+      };
+      document.getElementById("add-product").addEventListener("click", putProduct);
+
+    }
   }
 };
 
