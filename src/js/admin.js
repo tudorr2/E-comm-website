@@ -1,5 +1,10 @@
-import { postNewProduct, getAllProducts, deleteProductById , putNewProduct} from "./helper.js";
-// import { showConfirmationMessage } from "./helper.js";
+import {
+  postNewProduct,
+  getAllProducts,
+  deleteProductById,
+  putNewProduct,
+} from "./helper.js";
+import { showConfirmationMessage } from "./helper.js";
 
 const imageInputElement = document.querySelector(".add-product-form #image");
 const nameInputElement = document.querySelector(".add-product-form #name");
@@ -23,9 +28,9 @@ const populateProductsTable = async () => {
       (product, index) =>
         `<tr >
 			<th scope="row">${index + 1}</th>
-			<td><img src="${product.img}" class="img-table" width="50" height="50"></td>
-			<td>${product.name}</td>
-			<td>${product.price}</td>
+			<td class = "name-value">${product.name}</td>
+			<td><img src="${product.img}" class="img-value" width="50" height="50"></td>
+			<td class = "price-value">${product.price}</td>
 			<td data-id=${product.id}>
 				<button id="${product.id}" class="btn btn-danger">
 					<i class="fa-regular fa-trash-can"></i>
@@ -39,14 +44,10 @@ const populateProductsTable = async () => {
 		</tr>`
     )
     .join("");
-      
+
   document.getElementById("products-table-body").innerHTML = tableContent;
 };
 window.addEventListener("DOMContentLoaded", populateProductsTable);
-// document.querySelector("#products-list");
-// document.querySelector("#macarena").addEventListener("click", () => {
-//   alert("fff");
-// });
 
 const addProduct = async () => {
   const product = {
@@ -76,20 +77,8 @@ document.getElementById("add-product").addEventListener("click", addProduct);
 //   document.querySelector(".add-product-container").classList.toggle("hidden");
 // });
 
-
-// productList.addEventListener("click", (e) => {
-//   e.preventDefault();
-//   let editButtonIsPressed = e.target.id == "macarena";
-//   console.log(e.target.parentElement.dataset.id);
-//   let id = e.target.parentElement.dataset.id;
-//   console.log(id);
-
-//   if (editButtonIsPressed) {
-//     console.log("edittt");
-//   } else console.log("nu merge");
-// });
-
 const handleProducts = async (event) => {
+  //delete product
   if (event.target.classList.contains("fa-trash-can")) {
     const productId = event.target.parentNode.id;
     console.log(productId);
@@ -97,19 +86,42 @@ const handleProducts = async (event) => {
     if (response.ok) {
       await populateProductsTable();
     }
-   
-  }
-  if(event.target.classList.contains("fa-pencil")){
+  } 
+  //put product
+  if (event.target.classList.contains("fa-pencil")) {
+    let imageInputElement = document.querySelector(
+      ".add-product-form #image"
+    );
+    let nameInputElement = document.querySelector(".add-product-form #name");
+    let descriptionInputElement = document.querySelector(
+      ".add-product-form #description"
+    );
+    let quantityInputElement = document.querySelector(
+      ".add-product-form #quantity"
+    );
+    let priceInputElement = document.querySelector(
+      ".add-product-form #price"
+    );
+    let categoryInputElement = document.querySelector(
+      ".add-product-form #category"
+    );
+    const parent = event.target.parentNode.parentNode.parentNode;
+    console.log(parent);
+    const nameValue = parent.querySelector(".name-value").textContent;
+    nameInputElement.value = nameValue;
+    const imageValue = parent.querySelector(".img-value").textContent.toString();
+    imageInputElement.value = imageValue;
+    const priceValue = parent.querySelector(".price-value").textContent;
+    priceInputElement.value = priceValue;
+    
+
+    
+    console.log(imageValue)
     const productId = event.target.parentNode.id;
-    const response2 = await putNewProduct(productId);
     console.log(productId);
-    let imageValue = document.querySelector(".img-table").textContent;
-    
-    console.log(imageValue);
-    
-    
-    if(response2.ok){
-    }
+    // const response2 = await putNewProduct(productId);
+    // if(response2.ok){
+    // }
   }
 };
 
