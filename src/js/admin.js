@@ -29,9 +29,14 @@ const populateProductsTable = async () => {
         `<tr >
 			<th scope="row">${index + 1}</th>
 			<td class = "name-value">${product.name}</td>
-			<td><img src="${product.img}" class="img-value" width="50" height="50"></td>
-			<td class = "price-value">${product.price}</td>
+			<td><img src="${product.img}" class="" width="50" height="50"></td>
+			<td class = "price-value ">${product.price}</td>
+			<td class = "descr-value hidden">${product.descr}</td>
+			<td class = "quantity-value hidden">${product.quantity}</td>
+			<td class = "cat-value hidden">${product.category}</td>
+			<td class = "img-value hidden">${product.img}</td>
 			<td data-id=${product.id}>
+        
 				<button id="${product.id}" class="btn btn-danger">
 					<i class="fa-regular fa-trash-can"></i>
 				</button>
@@ -86,12 +91,12 @@ const handleProducts = async (event) => {
     if (response.ok) {
       await populateProductsTable();
     }
-  } 
+  }
   //put product
   if (event.target.classList.contains("fa-pencil")) {
-    let imageInputElement = document.querySelector(
-      ".add-product-form #image"
-    );
+    const productId = event.target.parentNode.id;
+    
+    let imageInputElement = document.querySelector(".add-product-form #image");
     let nameInputElement = document.querySelector(".add-product-form #name");
     let descriptionInputElement = document.querySelector(
       ".add-product-form #description"
@@ -99,9 +104,7 @@ const handleProducts = async (event) => {
     let quantityInputElement = document.querySelector(
       ".add-product-form #quantity"
     );
-    let priceInputElement = document.querySelector(
-      ".add-product-form #price"
-    );
+    let priceInputElement = document.querySelector(".add-product-form #price");
     let categoryInputElement = document.querySelector(
       ".add-product-form #category"
     );
@@ -109,15 +112,17 @@ const handleProducts = async (event) => {
     console.log(parent);
     const nameValue = parent.querySelector(".name-value").textContent;
     nameInputElement.value = nameValue;
-    const imageValue = parent.querySelector(".img-value").textContent.toString();
+    const imageValue = parent.querySelector(".img-value").textContent;
     imageInputElement.value = imageValue;
     const priceValue = parent.querySelector(".price-value").textContent;
     priceInputElement.value = priceValue;
-    
-
-    
-    console.log(imageValue)
-    const productId = event.target.parentNode.id;
+    const quantityValue = parent.querySelector(".quantity-value").textContent;
+    quantityInputElement.value = quantityValue;
+    const catValue = parent.querySelector(".cat-value").textContent;
+    categoryInputElement.value = catValue;
+    const descrValue = parent.querySelector(".descr-value").textContent;
+    descriptionInputElement.value = descrValue;
+    console.log(imageValue);
     console.log(productId);
     // const response2 = await putNewProduct(productId);
     // if(response2.ok){

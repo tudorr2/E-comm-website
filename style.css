@@ -83,9 +83,9 @@ width: 40px;
 	width: 100%;
 }
 
-/* .hidden {
+.hidden {
 	display: none;
-} */
+}
 
 .error {
 	background-color: red;
