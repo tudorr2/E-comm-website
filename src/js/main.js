@@ -8,7 +8,7 @@ const createCardFromProduct = (product) => {
 	  <a href="/src/html/details.html?product_id=${product.id}" class="card-title">
 	  <h5 class="card-title mb-2 text-light">${product.name}</h5></a>
 	  <h5 class="card-title mb-3">${product.price}$</h5>
-    <a href="/src/html/details.html?product_id=${product.id}" class="btn btn-dark btn-outline-warning btn-card">See details</a>
+    <a href="./src/html/details.html?product_id=${product.id}" class="btn btn-dark btn-outline-warning btn-card">See details</a>
 
 	</div>
   </div>`;
