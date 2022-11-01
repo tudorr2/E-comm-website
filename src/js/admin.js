@@ -126,6 +126,7 @@ const handleProducts = async (event) => {
     console.log(productId);
     //const response2 = await putNewProduct(productId , products);
     //if(response2.ok){
+
       const putProduct = async () => {
         const product = {
           name: nameInputElement.value,
@@ -135,17 +136,17 @@ const handleProducts = async (event) => {
           quantity: quantityInputElement.value,
           category: categoryInputElement.value,
         };
-      
-        const response = await putNewProduct(productId , product);
+        
+        const response = await putNewProduct(product , productId);
         showConfirmationMessage(
           "add-product-message",
           response,
           "Product was updated with succes!"
-        );
-      };
-      document.querySelector("#add-product").addEventListener("click", putProduct);
-
-    //}
+          );
+        };
+        
+        document.querySelector("#add-product").addEventListener("click", putProduct);
+        //}
   }
 };
 

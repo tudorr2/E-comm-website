@@ -63,5 +63,7 @@ export const putNewProduct = async (id , product) => {
    
     body: JSON.stringify(product),
   });
+  
+
   return response;
 };
