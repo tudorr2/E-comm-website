@@ -53,7 +53,7 @@ export const deleteProductById = async (id) => {
   return response;
 };
 
-export const putNewProduct = async (id) => {
+export const putNewProduct = async (id , product) => {
   
   const response = await fetch(PRODUCTS_URL + id, {
     method: "PUT",

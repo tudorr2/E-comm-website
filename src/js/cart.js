@@ -19,7 +19,7 @@ function removeItemFromCart(productId) {
   window.location.reload();
 } 
 
-const quantityValue = document.querySelector("#quantity-product").value;
+// const quantityValue = document.querySelector("#quantity-product").value;
 function updateQuantity(productId, quantityProd) {
   for (let product of cart) {
     if (product.id == productId) {
