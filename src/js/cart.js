@@ -17,7 +17,9 @@ function removeItemFromCart(productId) {
   localStorage.setItem("cart", JSON.stringify(temp));
   document.querySelector(".tbody").innerText = "";
   window.location.reload();
-}
+} 
+
+const quantityValue = document.querySelector("#quantity-product").value;
 function updateQuantity(productId, quantityProd) {
   for (let product of cart) {
     if (product.id == productId) {
