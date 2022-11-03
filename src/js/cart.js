@@ -17,19 +17,21 @@ function removeItemFromCart(productId) {
   localStorage.setItem("cart", JSON.stringify(temp));
   document.querySelector(".tbody").innerText = "";
   window.location.reload();
-} 
-
-// const quantityValue = document.querySelector("#quantity-product").value;
-function updateQuantity(productId, quantityProd) {
-  for (let product of cart) {
-    if (product.id == productId) {
-      product.quantity = quantityProd;
-    }
-  }
-  localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-function getTotal() {
+// const quantityValue = document.querySelector("#quantity-product").value;
+
+function getTotal(event) {
+      function updateQuantity(productId, quantityProd) {
+      for (let product of cart) {
+        if (product.id == productId) {
+          product.quantity = quantityProd;
+          
+        }
+      }
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+
   let temp = cart.map(function (item) {
     return parseFloat(item.price);
   });
@@ -53,15 +55,14 @@ const loadCart = () => {
     <th scope="row">${index}</th>
     <td><img src="${product.img}" class = "cart-img"></td>
     <td>${product.name}</td>
-    <td><input type="text" name="" id="quantity-product"></td>
+    <td><input type="number" name="" class="quantity-product"></td>
     <td>${product.price} $</td>
     <td><button onclick="removeItemFromCart(${product.id})" class = "btn btn-outline-warning delete-product"><i class="fa-solid fa-trash"></i></button></td>
     </tr>
     `;
-    const quantityProd = document.querySelector("#quantity-product").value;
   };
 
-  const createRowFromProduct = cart.map(createCardFromProduct);
+  // const createRowFromProduct = cart.map(createCardFromProduct);
   var index = 1;
 
   cart.forEach(async (productId) => {

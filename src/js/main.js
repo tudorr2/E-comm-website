@@ -3,9 +3,9 @@
 const createCardFromProduct = (product) => {
   return `<div class="card text-bg-dark mb-3 mt-3  product-card" style="width: 18rem;">
 	
-	<a href="" class="card-img-top "><img src="${product.img}" class="card-img-top" alt="productimg"></a>
+	<a href="/../src/html/details.html?product_id=${product.id}" class="card-img-top "><img src="${product.img}" class="card-img-top" alt="productimg"></a>
 	<div class="card-body">
-	  <a href="/src/html/details.html?product_id=${product.id}" class="card-title">
+	  <a href="/../src/html/details.html?product_id=${product.id}" class="card-title">
 	  <h5 class="card-title mb-2 text-light">${product.name}</h5></a>
 	  <h5 class="card-title mb-3">${product.price}$</h5>
     <a href="/../src/html/details.html?product_id=${product.id}" class="btn btn-dark btn-outline-warning btn-card">See details</a>

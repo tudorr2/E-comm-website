@@ -94,7 +94,6 @@ const handleProducts = async (event) => {
   }
   //put product
   if (event.target.classList.contains("fa-pencil")) {
-    const productId = event.target.parentNode.id;
 
     let imageInputElement = document.querySelector(".add-product-form #image");
     let nameInputElement = document.querySelector(".add-product-form #name");
