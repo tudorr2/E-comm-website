@@ -1,10 +1,6 @@
-import {
-  postNewProduct,
-  getAllProducts,
-  deleteProductById,
-  putNewProduct,
-} from "./helper.js";
+import { postNewProduct, getAllProducts, deleteProductById } from "./helper.js";
 import { showConfirmationMessage } from "./helper.js";
+const PRODUCTS_URL = "https://63372212132b46ee0bddc50f.mockapi.io/product/";
 
 const imageInputElement = document.querySelector(".add-product-form #image");
 const nameInputElement = document.querySelector(".add-product-form #name");
@@ -94,7 +90,6 @@ const handleProducts = async (event) => {
   }
   //put product
   if (event.target.classList.contains("fa-pencil")) {
-
     let imageInputElement = document.querySelector(".add-product-form #image");
     let nameInputElement = document.querySelector(".add-product-form #name");
     let descriptionInputElement = document.querySelector(
@@ -122,33 +117,63 @@ const handleProducts = async (event) => {
     const descrValue = parent.querySelector(".descr-value").textContent;
     descriptionInputElement.value = descrValue;
     console.log(imageValue);
-    console.log(productId);
-    //const response2 = await putNewProduct(productId , products);
-    //if(response2.ok){
+    // console.log(productId);
+    const productId = event.target.parentNode.id;
+    // console.log(productId);
 
-      const putProduct = async () => {
-        const product = {
+    const putNewProduct = (e) => {
+      const parent = event.target.parentNode.parentNode.parentNode;
+      console.log(parent);
+      e.preventDefault();
+      // const id = e.target.parentNode.id;
+      // console.log(productId);
+      fetch(PRODUCTS_URL + productId, {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
           name: nameInputElement.value,
           img: imageInputElement.value,
           descr: descriptionInputElement.value,
           price: priceInputElement.value,
           quantity: quantityInputElement.value,
           category: categoryInputElement.value,
-        };
-        
-        const response = await putNewProduct(product , productId);
-        showConfirmationMessage(
-          "add-product-message",
-          response,
-          "Product was updated with succes!"
-          );
-        };
-        
-        document.querySelector("#add-product").addEventListener("click", putProduct);
-        //}
+        }),
+      }).then((res) => res.json());
+
+      // .then(() => location.reload())
+    };
+    document
+      .querySelector(".edit-btn")
+      .addEventListener("click", putNewProduct);
   }
 };
 
 document
   .getElementById("products-list")
   .addEventListener("click", handleProducts);
+
+//   document.querySelector("#add-product").addEventListener("click", putProduct);
+
+//const response2 = await putNewProduct(productId , products);
+//if(response2.ok){
+// const putProduct = async () => {
+//   const product = {
+//     name: nameInputElement.value,
+//     img: imageInputElement.value,
+//     descr: descriptionInputElement.value,
+//     price: priceInputElement.value,
+//     quantity: quantityInputElement.value,
+//     category: categoryInputElement.value,
+//   };
+
+//   const response = await putNewProduct(product , productId);
+//   showConfirmationMessage(
+//     "add-product-message",
+//     response,
+//     "Product was updated with succes!"
+//     );
+//   };
+
+//   //}
