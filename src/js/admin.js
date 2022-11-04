@@ -1,4 +1,9 @@
-import { postNewProduct, getAllProducts, deleteProductById } from "./helper.js";
+import {
+  postNewProduct,
+  getAllProducts,
+  deleteProductById,
+  // putNewProduct,
+} from "./helper.js";
 import { showConfirmationMessage } from "./helper.js";
 const PRODUCTS_URL = "https://63372212132b46ee0bddc50f.mockapi.io/product/";
 
@@ -118,13 +123,37 @@ const handleProducts = async (event) => {
     descriptionInputElement.value = descrValue;
     console.log(imageValue);
     const productId = event.target.parentNode.id;
-    // console.log(productId);
+    // console.log(productId); 
+
+    // const response2 = await putNewProduct(productId);
+    // if (response2.ok) {
+    //   const putProduct = async (productId) => {
+    //     const product = {
+    //       name: nameInputElement.value,
+    //       img: imageInputElement.value,
+    //       descr: descriptionInputElement.value,
+    //       price: priceInputElement.value,
+    //       quantity: quantityInputElement.value,
+    //       category: categoryInputElement.value,
+    //     };
+
+    //     const response = await putNewProduct(productId);
+    //     showConfirmationMessage(
+    //       "add-product-message",
+    //       response,
+    //       "Product was updated with succes!"
+    //     );
+    //   };
+    // }
 
     const putNewProduct = (e) => {
-      
+const id = PRODUCTS_URL+ productId;
+const idNew = id.replace(/\s/g, '');
+
       e.preventDefault();
-      console.log(productId)
-      fetch(PRODUCTS_URL + productId, {
+      console.log(idNew);
+      fetch(idNew, {
+        
         method: "PUT",
         headers: {
           "Content-type": "application/json",
