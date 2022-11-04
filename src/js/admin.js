@@ -117,16 +117,13 @@ const handleProducts = async (event) => {
     const descrValue = parent.querySelector(".descr-value").textContent;
     descriptionInputElement.value = descrValue;
     console.log(imageValue);
-    // console.log(productId);
     const productId = event.target.parentNode.id;
     // console.log(productId);
 
     const putNewProduct = (e) => {
-      const parent = event.target.parentNode.parentNode.parentNode;
-      console.log(parent);
+      
       e.preventDefault();
-      // const id = e.target.parentNode.id;
-      // console.log(productId);
+      console.log(productId)
       fetch(PRODUCTS_URL + productId, {
         method: "PUT",
         headers: {
