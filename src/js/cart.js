@@ -137,7 +137,7 @@ function getTotal() {
     return parseFloat(item.price);
   }, 0);
   let sum = temp.reduce(function (prev, next) {
-    return prev + next * temp2 ;
+    return prev + next * quantity2 ;
   }, 0);
 
   document.querySelector(
