@@ -18,10 +18,10 @@ const showProductDetails = async () => {
 		</div>
 		<div class="col-md-8">
 		  <div class="card-body">
-			<h5 class="card-title text-warning mb-3">${productInfo.name}</h5>
+			<h5 class="card-title  mb-3">${productInfo.name}</h5>
 			<p class="card-text">${productInfo.descr}.</p>
-			<h5 class="card-title text-warning mt-4">${productInfo.price}$</h5>
-			<button id=${productInfo.id} class="btn btn-outline-warning mt-2 add-to-cart">Add to cart</button>
+			<h5 class="card-title  mt-4 detail-price" >${productInfo.price}$</h5>
+			<button id=${productInfo.id} class="btn btn-outline-light mt-2 add-to-cart btn-add-cart">Add to cart</button>
 			
 		  </div>
 		</div>

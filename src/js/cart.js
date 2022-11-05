@@ -75,16 +75,16 @@ const loadCart = () => {
     return `<tr>
     <th scope="row">${index}</th>
     <td><img src="${product.img}" class = "cart-img"></td>
-    <td><a href = "/../src/html/details.html?product_id=${product.id}" class = "text-warning text-decoration-none fw-bolder"> ${product.name}</a></td>
+    <td><a href = "/../src/html/details.html?product_id=${product.id}" class = " text-decoration-none fw-bolder card-title"> ${product.name}</a></td>
     <td><div class = "container quantity-form">
     <div class = "container quantity-input">
-    <button onclick = "decrement(${product.id})" class = "fa-solid fa-minus text-warning" data-product-id=${product.id}></button>
-    <div id = ${product.id} class = "quantity-value">0</div>
-    <button onclick = "increment(${product.id})" class = "fa-solid fa-plus  w-30 text-warning" data-product-id=${product.id}></button>
+    <button onclick = "decrement(${product.id})" class = "fa-solid fa-minus " data-product-id=${product.id}></button>
+    <div id = ${product.id} class = "quantity-value card-title text-light">0</div>
+    <button onclick = "increment(${product.id})" class = "fa-solid fa-plus  w-30s" data-product-id=${product.id}></button>
     </div>
     </div></td>
-    <td>${product.price} $</td>
-    <td><button onclick="removeItemFromCart(${product.id})" class = "btn btn-outline-warning delete-product"><i class="fa-solid fa-trash"></i></button></td>
+    <td class = "card-title">${product.price} $</td>
+    <td><button onclick="removeItemFromCart(${product.id})" class = "btn btn-outline-light delete-product"><i class="fa-solid fa-trash"></i></button></td>
     </tr>
     `;
   };
@@ -142,5 +142,5 @@ function getTotal() {
 
   document.querySelector(
     ".total-price"
-  ).innerHTML = `<h1 class="text-dark total-price">Total price: <span class="text-warning">$${sum}</span></span></h1> `;
+  ).innerHTML = `<h1 class="text-dark  total-price">Total price: <span class="text-dark">$${sum}</span></span></h1> `;
 }

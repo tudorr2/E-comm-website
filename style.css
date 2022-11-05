@@ -1,11 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap");
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,700&display=swap');
+
+
 body {
   font-family: "Poppins", sans-serif;
-  
+  background-color: #545E56;
 }
 html {
   scroll-behavior: smooth;
 }
+
+
+
 
 .products-container {
   font-size: 5px;
@@ -21,6 +28,7 @@ html {
 .product-card {
   display: flex;
   margin: 10px;
+  background-color: #212529;
 }
 
 footer{
@@ -28,6 +36,50 @@ footer{
   border-top-right-radius: 8px;
   /* width: 100vw; */
   
+}
+
+nav a {
+	font-weight: 500;
+
+}
+
+
+.fa-minus , .fa-plus {
+	color:#83c5be;
+	border-color: #212529;
+}
+
+
+.navbar-brand {
+	font-family: 'Ubuntu', sans-serif;
+
+}
+
+
+.card-title{
+	color: #83c5be;
+}
+.navbar-nav a{
+	font-weight: 400;
+}
+
+.detail-price{
+	color:#83c5be;
+}
+
+.btn-add-cart{
+	border-color:#83c5be;
+	color:#83c5be;
+}
+
+
+
+.btn-details{
+	border-color: #BBD0C9;
+}
+
+.a-main {
+	text-decoration-color: #fff ;
 }
 
 
@@ -52,7 +104,7 @@ width: 40px;
 	margin-top: 40px;
 	border: 2px solid ;
 	border-radius: 5px;
-	padding: 20px;
+	padding: 20px;		
 }
 
 .admin-container .header,
@@ -65,6 +117,15 @@ width: 40px;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
+}
+
+.add-product-container{
+	background-color: #212529;
+	color: #fff;
+	border-color: #212529;
+}
+.edit-btn{
+	background-color: #f5cb5c;
 }
 
 .add-product-form .item {
@@ -135,3 +196,12 @@ products-list{
 	font-weight: bold;
 }
 
+
+label{
+	font-weight: 700;
+	
+}
+
+input{
+	background-color: #eae1df;
+}
