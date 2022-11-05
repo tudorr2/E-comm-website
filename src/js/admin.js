@@ -27,7 +27,7 @@ const populateProductsTable = async () => {
   const tableContent = products
     .map(
       (product, index) =>
-        `<tr >
+        `<tr>
 			<th scope="row">${index + 1}</th>
 			<td class = "name-value">${product.name}</td>
 			<td><img src="${product.img}" class="" width="50" height="50"></td>

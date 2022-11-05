@@ -21,17 +21,16 @@ function removeItemFromCart(productId) {
 
 // const quantityValue = document.querySelector("#quantity-product").value;
 
-function getTotal(event) {
-      function updateQuantity(productId, quantityProd) {
-      for (let product of cart) {
-        if (product.id == productId) {
-          product.quantity = quantityProd;
-          
-        }
-      }
-      localStorage.setItem("cart", JSON.stringify(cart));
+function updateQuantity(productId, quantityProd) {
+  for (let product of cart) {
+    if (product.id == productId) {
+      product.quantity = quantityProd;
     }
+  }
 
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+function getTotal(event) {
   let temp = cart.map(function (item) {
     return parseFloat(item.price);
   });
@@ -54,8 +53,17 @@ const loadCart = () => {
     return `<tr>
     <th scope="row">${index}</th>
     <td><img src="${product.img}" class = "cart-img"></td>
-    <td>${product.name}</td>
-    <td><input type="number" name="" class="quantity-product"></td>
+    <td><a href = "/../src/html/details.html?product_id=${product.id}" class = "text-warning text-decoration-none fw-bolder"> ${product.name}</a></td>
+    <td><div class = "container quantity-form">
+    <div class = "container quantity-input">
+    <button class = "fa-solid fa-minus text-warning"></button>
+    <input type = "text" class = "w-25" value = "${product.quantity}">
+    <button class = "fa-solid fa-plus  w-30 text-warning"></button>
+    </div>
+
+
+
+    </div></td>
     <td>${product.price} $</td>
     <td><button onclick="removeItemFromCart(${product.id})" class = "btn btn-outline-warning delete-product"><i class="fa-solid fa-trash"></i></button></td>
     </tr>
