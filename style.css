@@ -32,7 +32,7 @@ footer{
 
 
 .cart-img{
-  width: 70px;
+  width: 50px;
 
 }
 
@@ -116,6 +116,7 @@ products-list{
 	display: flex;
 	padding:0;
 	gap:2px;
+	width: 25vw;
 
 }
 
@@ -128,3 +129,9 @@ products-list{
 .quantity-input button{
 	background-color: #212529;
 }
+
+.quantity-value{
+	font-size: 12px;
+	font-weight: bold;
+}
+

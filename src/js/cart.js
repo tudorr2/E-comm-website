@@ -11,6 +11,7 @@ fetch("https://63372212132b46ee0bddc50f.mockapi.io/product")
 
 let products = JSON.parse(localStorage.getItem("products"));
 let cart = JSON.parse(localStorage.getItem("cart"));
+let basket = JSON.parse(localStorage.getItem("basket")) || [];
 
 function removeItemFromCart(productId) {
   let temp = cart.filter((item) => item.id != productId);
@@ -19,50 +20,69 @@ function removeItemFromCart(productId) {
   window.location.reload();
 }
 
-// const quantityValue = document.querySelector("#quantity-product").value;
 
-function updateQuantity(productId, quantityProd) {
-  for (let product of cart) {
-    if (product.id == productId) {
-      product.quantity = quantityProd;
-    }
+
+let increment = (id) => {
+  let selectedItem = id;
+  
+  let search = basket.find((x) => x.id === selectedItem );
+
+  if (search === undefined) {
+    basket.push({
+      id: selectedItem,
+      item: 1,
+      
+    });
+  } else {
+    search.item += 1; 
   }
 
-  localStorage.setItem("cart", JSON.stringify(cart));
-}
-function getTotal(event) {
-  let temp = cart.map(function (item) {
-    return parseFloat(item.price);
-  });
-  let sum = temp.reduce(function (prev, next) {
-    return prev + next;
-  }, 0);
+  
+  localStorage.setItem("basket", JSON.stringify(basket));
+  getTotal();
 
-  document.querySelector(
-    ".totalPrice"
-  ).innerHTML = `<h1>Total Price: <span class="text-warning">$${sum}</span></h1>`;
-}
-getTotal();
+  // console.log(basket);
+  update(selectedItem);
+};
+let decrement = (id) => {
+  let selectedItem = id;
+  let search = basket.find((x) => x.id === selectedItem);
 
+  if (search.item === 0) return;
+  else {
+    search.item -= 1;
+  }
+  localStorage.setItem("basket", JSON.stringify(basket));
+
+  // console.log(basket);
+
+  getTotal();
+  update(selectedItem);
+};
+
+let update = (id , price) => {
+  let search = basket.find((x) => x.id === id );
+
+  console.log("merge da ma dracu");
+  document.getElementById(id).innerHTML = search.item;
+};
 //make rows
 
 const loadCart = () => {
   let cart = JSON.parse(localStorage.getItem("cart"));
-
+  
   const createCardFromProduct = (product) => {
+    
     return `<tr>
     <th scope="row">${index}</th>
     <td><img src="${product.img}" class = "cart-img"></td>
     <td><a href = "/../src/html/details.html?product_id=${product.id}" class = "text-warning text-decoration-none fw-bolder"> ${product.name}</a></td>
     <td><div class = "container quantity-form">
     <div class = "container quantity-input">
-    <button class = "fa-solid fa-minus text-warning"></button>
-    <input type = "text" class = "w-25" value = "${product.quantity}">
-    <button class = "fa-solid fa-plus  w-30 text-warning"></button>
+    <button onclick = "decrement(${product.id})" class = "fa-solid fa-minus text-warning" data-product-id=${product.id}></button>
+    <div id = ${product.id} class = "quantity-value">0</div>
+    <button onclick = "increment(${product.id})" class = "fa-solid fa-plus  w-30 text-warning" data-product-id=${product.id}></button>
     </div>
-
-
-
     </div></td>
     <td>${product.price} $</td>
     <td><button onclick="removeItemFromCart(${product.id})" class = "btn btn-outline-warning delete-product"><i class="fa-solid fa-trash"></i></button></td>
@@ -76,8 +96,8 @@ const loadCart = () => {
   cart.forEach(async (productId) => {
     const result = await fetch(
       `https://63372212132b46ee0bddc50f.mockapi.io/product/${productId.id}`
-    );
-    const product = await result.json();
+      );
+      const product = await result.json();
     const innerHTMLProduct = createCardFromProduct(product);
     index++;
     document.querySelector(".tbody").innerHTML += innerHTMLProduct;
@@ -89,3 +109,42 @@ window.addEventListener("DOMContentLoaded", loadCart);
 document.querySelector(".buy-btn").addEventListener("click", () => {
   alert("This is just a personal project👽");
 });
+
+
+// let TotalAmount = () => {
+  //   if(basket.length !== 0 ){
+    //     let amount = basket.map((x) =>{
+      //       let {item , id} = x;
+      //       let search = products.find((y) => y.id === id) || [];
+      
+      //       return item * search.price;
+      
+      //     })
+      //     console.log(amount);
+      //   }
+      //   else return;
+      // }
+      
+      // TotalAmount();
+      
+      function getTotal() {
+        let quantity = JSON.parse(localStorage.getItem("basket"));
+        let temp2 = quantity.map((basket) => {
+          return parseInt(basket.item)
+        });
+        let quantity2 = temp2.reduce((item) =>{
+          return item;
+        })
+        let temp = cart.map( (item) => {
+          return parseFloat(item.price);
+        } ,0);
+        let sum = temp.reduce(function (prev, next) {
+          return next + prev * quantity2 ;
+        }, 0);
+        
+        document.querySelector(
+          ".totalPrice"
+          ).innerHTML = `<h1>Total Price: <span class="text-warning">$${sum}</span></h1>`;
+        }
+        
+ 

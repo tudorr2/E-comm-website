@@ -67,3 +67,4 @@ export const putNewProduct = async (id) => {
 
   return response;
 };
+
