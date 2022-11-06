@@ -75,7 +75,7 @@ const loadCart = () => {
     return `<tr>
     <th scope="row">${index}</th>
     <td><img src="${product.img}" class = "cart-img"></td>
-    <td><a href = "/../src/html/details.html?product_id=${product.id}" class = " text-decoration-none fw-bolder card-title"> ${product.name}</a></td>
+    <td><a href = "./details.html?product_id=${product.id}" class = " text-decoration-none fw-bolder card-title"> ${product.name}</a></td>
     <td><div class = "container quantity-form">
     <div class = "container quantity-input">
     <button onclick = "decrement(${product.id})" class = "fa-solid fa-minus " data-product-id=${product.id}></button>
