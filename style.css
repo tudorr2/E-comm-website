@@ -1,18 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,700&display=swap");
 
 body {
   font-family: "Poppins", sans-serif;
-  background-color: #545E56;
+  background-color: #545e56;
 }
 html {
   scroll-behavior: smooth;
 }
-
-
-
 
 .products-container {
   font-size: 5px;
@@ -22,7 +18,6 @@ html {
   margin: auto;
   align-items: center;
   justify-content: center;
-  
 }
 
 .product-card {
@@ -31,177 +26,172 @@ html {
   background-color: #212529;
 }
 
-footer{
+footer {
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   /* width: 100vw; */
-  
 }
 
 nav a {
-	font-weight: 500;
-
+  font-weight: 500;
+  text-decoration: underline;
 }
 
-
-.fa-minus , .fa-plus {
-	color:#83c5be;
-	border-color: #212529;
+.fa-minus,
+.fa-plus {
+  color: #83c5be;
+  border-color: #212529;
 }
-
 
 .navbar-brand {
-	font-family: 'Ubuntu', sans-serif;
-
+  font-family: "Ubuntu", sans-serif;
+  color: #212529;
+  font-weight: bolder;
 }
 
-
-.card-title{
-	color: #83c5be;
+.card-title {
+  color: #83c5be;
 }
-.navbar-nav a{
-	font-weight: 400;
-}
-
-.detail-price{
-	color:#83c5be;
+.navbar-nav a {
+  font-weight: 400;
 }
 
-.btn-add-cart{
-	border-color:#83c5be;
-	color:#83c5be;
+.detail-price {
+  color: #83c5be;
 }
 
+.btn-add-cart {
+  border-color: #83c5be;
+  color: #83c5be;
+}
 
-
-.btn-details{
-	border-color: #BBD0C9;
+.btn-details {
+  border-color: #bbd0c9;
 }
 
 .a-main {
-	text-decoration-color: #fff ;
+  text-decoration-color: #fff;
 }
 
-
-.cart-img{
+.cart-img {
   width: 50px;
-
 }
 
-.table td , th{
+.table td,
+th {
   font-size: 12px;
 }
 
-.quantity-product{
-width: 40px;
-
+.quantity-product {
+  width: 40px;
 }
 
 .add-product-container {
-	display: flex;
-	flex-direction: column;
-	gap: 15px;
-	margin-top: 40px;
-	border: 2px solid ;
-	border-radius: 5px;
-	padding: 20px;		
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 40px;
+  border: 2px solid;
+  border-radius: 5px;
+  padding: 20px;
 }
 
 .admin-container .header,
 .admin-container .add-product-header {
-	display: flex;
-	justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .add-product-form {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.add-product-container{
-	background-color: #212529;
-	color: #fff;
-	border-color: #212529;
+.add-product-container {
+  background-color: #212529;
+  color: #fff;
+  border-color: #212529;
 }
-.edit-btn{
-	background-color: #f5cb5c;
+.edit-btn {
+  background-color: #f5cb5c;
 }
 
 .add-product-form .item {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .add-product-form .item .label-item {
-	flex: 1;
+  flex: 1;
 }
 
 .add-product-form .item .input-item {
-	flex: 2;
+  flex: 2;
 }
 
 .add-product-form .item .input-item input {
-	width: 100%;
+  width: 100%;
 }
 
 .hidden {
-	display: none;
+  display: none;
 }
 
 .error {
-	background-color: red;
+  background-color: #6a040f;
+  border-radius: 5px;
+  text-align: center;
 }
 
 .success {
-	background-color: green;
+  background-color: #a3b18a;
+  border-radius: 5px;
+  text-align: center;
 }
 
-.buttons-add-edit{
-	display: flex;
-	gap: 10px;
+.buttons-add-edit {
+  display: flex;
+  gap: 10px;
 }
 /* 
 products-list{
 	width: 80vw;
 } */
 
-.quantity-form{
-	width: 25vw;
-	padding: 0;
-	margin: 0;	
+.quantity-form {
+  width: 25vw;
+  padding: 0;
+  margin: 0;
 }
 
-.quantity-input{
-	display: flex;
-	padding:0;
-	gap:2px;
-	width: 25vw;
-
+.quantity-input {
+  display: flex;
+  padding: 0;
+  gap: 2px;
+  width: 25vw;
 }
 
-.quantity-input input{
-	color:white;
-	background-color: #212529;
-	padding: 0;
+.quantity-input input {
+  color: white;
+  background-color: #212529;
+  padding: 0;
 }
 
-.quantity-input button{
-	background-color: #212529;
+.quantity-input button {
+  background-color: #212529;
 }
 
-.quantity-value{
-	font-size: 12px;
-	font-weight: bold;
+.quantity-value {
+  font-size: 12px;
+  font-weight: bold;
 }
 
-
-label{
-	font-weight: 700;
-	
+label {
+  font-weight: 700;
 }
 
-input{
-	background-color: #eae1df;
+input {
+  background-color: #edf2f4;
 }
