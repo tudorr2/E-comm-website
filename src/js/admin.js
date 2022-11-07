@@ -69,7 +69,7 @@ const addProduct = async () => {
   showConfirmationMessage(
     "add-product-message",
     response,
-    "Produsul a fost adaugat cu succes!"
+    "Added with success!"
   );
 };
 
