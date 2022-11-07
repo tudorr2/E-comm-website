@@ -15,8 +15,10 @@ let basket = JSON.parse(localStorage.getItem("basket")) || [];
 
 function removeItemFromCart(productId) {
   let temp = cart.filter((item) => item.id != productId);
+  let temp2 = basket.filter((item) => item.id != productId )
   localStorage.setItem("cart", JSON.stringify(temp));
-  localStorage.setItem("basket", JSON.stringify(temp));
+  localStorage.setItem("basket", JSON.stringify(temp2));
+
   
   document.querySelector(".tbody").innerText = "";
   window.location.reload();
@@ -35,11 +37,11 @@ let increment = (id) => {
   } else {
     search.item += 1;
   }
-  getTotal();
-
+  
   localStorage.setItem("basket", JSON.stringify(basket));
-
+  
   // console.log(basket);
+  getTotal();
   update(selectedItem);
 };
 let decrement = (id) => {
@@ -126,6 +128,7 @@ document.querySelector(".buy-btn").addEventListener("click", () => {
 
 function getTotal() {
   let quantity = JSON.parse(localStorage.getItem("basket"));
+  let cart = JSON.parse(localStorage.getItem("cart"));
   let temp2 = quantity.map((basket) => {
     return parseFloat(basket.item);
   });
@@ -142,7 +145,6 @@ function getTotal() {
     return prev * temp2[i] + next * temp2[i + 1] ;
     }
   }, 0);
-  console.log(sum);
 
   document.querySelector(
     ".total-price"
@@ -150,3 +152,24 @@ function getTotal() {
 } 
 
 getTotal();
+
+
+// function getTotal() {
+//   let quantity = JSON.parse(localStorage.getItem("basket"));
+//   let temp2 = quantity.map((basket) => {
+//     return parseFloat(basket.item);
+//   });
+//   let quantity2 = temp2.reduce((prev, next) => {
+//     return next + prev
+//   });
+//   let temp = cart.map((item) => {
+//     return parseFloat(item.price);
+//   }, 0);
+//   let sum = temp.reduce(function (prev, next) {
+//     return prev + next * quantity2 ;
+//   }, 0);
+
+//   document.querySelector(
+//     ".total-price"
+//   ).innerHTML = `<h1 class="text-dark  total-price">Total price: <span class="text-dark">$${sum}</span></span></h1> `;
+// }

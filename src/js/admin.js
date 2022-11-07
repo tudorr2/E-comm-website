@@ -91,6 +91,7 @@ const handleProducts = async (event) => {
     const response = await deleteProductById(productId);
     if (response.ok) {
       await populateProductsTable();
+      location.reload();
     }
   }
   //put product
@@ -123,7 +124,7 @@ const handleProducts = async (event) => {
     descriptionInputElement.value = descrValue;
     console.log(imageValue);
     const productId = event.target.parentNode.id;
-    // console.log(productId); 
+    // console.log(productId);
 
     // const response2 = await putNewProduct(productId);
     // if (response2.ok) {
@@ -147,13 +148,12 @@ const handleProducts = async (event) => {
     // }
 
     const putNewProduct = (e) => {
-const id = PRODUCTS_URL+ productId;
-const idNew = id.replace(/\s/g, '');
+      const id = PRODUCTS_URL + productId;
+      const idNew = id.replace(/\s/g, "");
 
       e.preventDefault();
       console.log(idNew);
       fetch(idNew, {
-        
         method: "PUT",
         headers: {
           "Content-type": "application/json",
@@ -166,9 +166,10 @@ const idNew = id.replace(/\s/g, '');
           quantity: quantityInputElement.value,
           category: categoryInputElement.value,
         }),
-      }).then((res) => res.json());
+      })
+        .then((res) => res.json())
 
-      // .then(() => location.reload())
+        .then(() => location.reload());
     };
     document
       .querySelector(".edit-btn")
