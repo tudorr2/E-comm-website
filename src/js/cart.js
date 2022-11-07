@@ -61,7 +61,6 @@ let decrement = (id) => {
 let update = (id, price) => {
   let search = basket.find((x) => x.id === id);
 
-  console.log("merge da ma dracu");
   console.log(search.price);
   document.getElementById(id).innerHTML = search.item;
 
@@ -130,17 +129,24 @@ function getTotal() {
   let temp2 = quantity.map((basket) => {
     return parseFloat(basket.item);
   });
-  let quantity2 = temp2.reduce((prev, next) => {
-    return next + prev
-  });
+  console.log(temp2);
+  // let quantity2 = temp2.reduce((prev, next) => {
+  //   return next + prev
+  // });
   let temp = cart.map((item) => {
     return parseFloat(item.price);
   }, 0);
+  
   let sum = temp.reduce(function (prev, next) {
-    return prev + next * quantity2 ;
+      for( let i = 0 ; i <= temp2.length ; i++){  
+    return prev * temp2[i] + next * temp2[i + 1] ;
+    }
   }, 0);
+  console.log(sum);
 
   document.querySelector(
     ".total-price"
   ).innerHTML = `<h1 class="text-dark  total-price">Total price: <span class="text-dark">$${sum}</span></span></h1> `;
-}
+} 
+
+getTotal();
