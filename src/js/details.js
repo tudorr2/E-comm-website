@@ -20,6 +20,8 @@ const showProductDetails = async () => {
 		  <div class="card-body">
 			<h5 class="card-title  mb-3">${productInfo.name}</h5>
 			<p class="card-text">${productInfo.descr}.</p>
+			<h5 class="card-title  mt-4 detail-price" >Category: ${productInfo.category}</h5>
+
 			<h5 class="card-title  mt-4 detail-price" >${productInfo.price}$</h5>
 			<button id=${productInfo.id} class="btn btn-outline-light mt-2 add-to-cart btn-add-cart">Add to cart</button>
 			
@@ -48,8 +50,6 @@ fetch("https://63372212132b46ee0bddc50f.mockapi.io/product")
 let products = JSON.parse(localStorage.getItem("products"));
 let cart = JSON.parse(localStorage.getItem("cart"));
 
-
-
 function addItemToCart(productId) {
   let product = products.find(function (product) {
     return product.id == productId;
@@ -77,4 +77,3 @@ const handleActions = (event) => {
 document
   .querySelector(".product-details")
   .addEventListener("click", handleActions);
-
